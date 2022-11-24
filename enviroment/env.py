@@ -41,7 +41,7 @@ class ExpEnv(Env):
         self.action_list, self.client = getActionList(host)
         self.action_space = Discrete(len(self.action_list))
         self.state = [0]
-        self.observation_space = [[0],[1]]
+        self.observation_space = [[0,1],[1,0]]
         self.host = host
         self.shower_length = 5
 
@@ -55,7 +55,7 @@ class ExpEnv(Env):
             print(self.action_list[action])
             for payload in array_payload:
                     res = exploit.execute(payload=payload)
-                    if res['job_id'] != None:
+                    if res['job_id'] != None and res['job_id']>0:
                         reward += 2
                         self.state = [1,0]
                     else:
