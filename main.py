@@ -233,11 +233,15 @@ torch.save(policy, 'checkpoint.pth')
         
     #     break
 
+print("[*] Start testing step...")
+
+test_env = env.ExpEnv(sys.argv[0])
+
 agent=torch.load('checkpoint.pth')
 print(agent)
 agent.eval()
 rewards = []
-state = env.reset()
+state = test_env.reset()
 episode_reward=0
 done = False
 while not done:
@@ -250,7 +254,7 @@ while not done:
         action_prob = F.softmax(action_pred, dim = -1)
             
     action = torch.argmax(action_prob, dim = -1)    
-    state, reward, done, _ = env.step(action.item())
+    state, reward, done, _ = test_env.step(action)
     episode_reward += reward    
-env.close()
+# test_env.close()
 print(episode_reward) 

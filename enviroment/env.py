@@ -55,7 +55,7 @@ class ExpEnv(Env):
             print(self.action_list[action])
             for payload in array_payload:
                     res = exploit.execute(payload=payload)
-                    if res['job_id'] != "None":
+                    if res['job_id'] != None:
                         reward += 2
                         self.state = [1,0]
                     else:
