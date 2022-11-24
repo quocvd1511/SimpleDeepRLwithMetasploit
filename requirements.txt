@@ -1,0 +1,6 @@
+pymetasploit3
+python3-nmap
+torch 
+torchvision 
+torchaudio
+gym
