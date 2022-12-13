@@ -13,18 +13,24 @@ def WriteFile(text):
 
 def prepareListAction(host):
     client = MsfRpcClient('123', port=55552)
-    nmap = nmap3.NmapScanTechniques()
-    res = nmap.nmap_tcp_scan(host)
-    list_service = res[host]['ports']
+    # nmap = nmap3.NmapScanTechniques()
+    # res = nmap.nmap_tcp_scan(host)
+    # list_service = res[host]['ports']
 
     list_exploit = client.modules.exploits
     list_action = []
 
+    # for i in list_exploit:
+    #     for j in list_service:
+    #         if j['service']['name'] in i:
+    #             list_action.append(i)
+    #             WriteFile(i)
+
     for i in list_exploit:
-        for j in list_service:
-            if j['service']['name'] in i:
-                list_action.append(i)
-                WriteFile(i)
+        if ("smb" in i or "samba" in i) and "windows" not in i and "osx" not in i:
+            list_action.append(i)
+            WriteFile(i)
+
     return list_action, client
 
 def getActionList(host):
