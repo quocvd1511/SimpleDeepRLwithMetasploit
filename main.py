@@ -74,7 +74,7 @@ def train(env, policy, optimizer, discount_factor, ppo_steps, ppo_clip):
 
         state = torch.FloatTensor(state).unsqueeze(0)
 
-        #append state here, not after we get the next state from env.step()
+        states.append(state)
         
         action_pred, value_pred = policy(state)
 
@@ -257,4 +257,5 @@ while not done:
     state, reward, done, _ = test_env.step(action)
     episode_reward += reward    
 # test_env.close()
-print(episode_reward) 
+print(test_env.client.sessions.list)s
+print("Result of testing phase: ",episode_reward)

@@ -27,7 +27,7 @@ def prepareListAction(host):
     #             WriteFile(i)
 
     for i in list_exploit:
-        if ("smb" in i or "samba" in i) and "windows" not in i and "osx" not in i:
+        if ("smb" in i or "samba" in i or "ircd" or ) and "windows" not in i and "osx" not in i:
             list_action.append(i)
             WriteFile(i)
 
@@ -87,3 +87,4 @@ class ExpEnv(Env):
 
 
         
+# /soc_csa_gcp_report_info
